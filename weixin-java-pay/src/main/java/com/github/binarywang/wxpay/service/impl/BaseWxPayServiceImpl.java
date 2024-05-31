@@ -3,6 +3,7 @@ package com.github.binarywang.wxpay.service.impl;
 import com.github.binarywang.utils.qrcode.QrcodeUtils;
 import com.github.binarywang.wxpay.bean.WxPayApiData;
 import com.github.binarywang.wxpay.bean.coupon.*;
+import com.github.binarywang.wxpay.bean.coupon.v3.*;
 import com.github.binarywang.wxpay.bean.notify.*;
 import com.github.binarywang.wxpay.bean.order.WxPayAppOrderResult;
 import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
@@ -1194,6 +1195,27 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
     WxPayCouponSendResult result = BaseWxPayResult.fromXML(responseContent, WxPayCouponSendResult.class);
     result.checkResult(this, request.getSignType(), true);
     return result;
+  }
+
+  @Override
+  public WxPayCouponSendV3Result sendCouponV3(WxPayCouponSendV3Request request) throws WxPayException {
+    String url = String.format("%s/v3/marketing/favor/users/%s/coupons", this.getPayBaseUrl(),request.getOpenId());
+    String response = this.postV3(url, GSON.toJson(request));
+    return GSON.fromJson(response, WxPayCouponSendV3Result.class);
+  }
+
+  @Override
+  public WxPayCouponStockQueryV3Result queryCouponStockV3(WxPayCouponStockQueryV3Request request) throws WxPayException {
+    String url = String.format("%s/v3/marketing/favor/stocks/%s", this.getPayBaseUrl(), request.getStockId());
+    String response = this.postV3(url, GSON.toJson(request));
+    return GSON.fromJson(response, WxPayCouponStockQueryV3Result.class);
+  }
+
+  @Override
+  public WxPayCouponInfoQueryV3Result queryCouponInfo(WxPayCouponInfoQueryV3Request request) throws WxPayException {
+    String url = String.format("%s/v3/marketing/favor/users/{openid}/coupons/%s", this.getPayBaseUrl(), request.getCouponId());
+    String response = this.postV3(url, GSON.toJson(request));
+    return GSON.fromJson(response, WxPayCouponInfoQueryV3Result.class);
   }
 
   @Override

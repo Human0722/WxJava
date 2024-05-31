@@ -2,6 +2,7 @@ package com.github.binarywang.wxpay.service;
 
 import com.github.binarywang.wxpay.bean.WxPayApiData;
 import com.github.binarywang.wxpay.bean.coupon.*;
+import com.github.binarywang.wxpay.bean.coupon.v3.*;
 import com.github.binarywang.wxpay.bean.notify.*;
 import com.github.binarywang.wxpay.bean.request.*;
 import com.github.binarywang.wxpay.bean.result.*;
@@ -1380,6 +1381,17 @@ public interface WxPayService {
    */
   WxPayCouponSendResult sendCoupon(WxPayCouponSendRequest request) throws WxPayException;
 
+
+  /**
+   * 发放代金券V3
+   * 接口请求链接：https://api.mch.weixin.qq.com/v3/marketing/favor/users/{openid}/coupons
+   * 文档地址： https://pay.weixin.qq.com/docs/merchant/apis/cash-coupons/coupon/send-coupon.html
+   * @param request
+   * @return
+   * @throws WxPayException
+   */
+  WxPayCouponSendV3Result sendCouponV3(WxPayCouponSendV3Request request) throws WxPayException;
+
   /**
    * <pre>
    * 查询代金券批次.
@@ -1394,6 +1406,17 @@ public interface WxPayService {
   WxPayCouponStockQueryResult queryCouponStock(WxPayCouponStockQueryRequest request) throws WxPayException;
 
   /**
+   * 查询代金券批次V3
+   * 接口请求地址：/v3/marketing/favor/stocks/{stock_id}
+   * 文档地址：https://pay.weixin.qq.com/docs/merchant/apis/cash-coupons/stock/query-stock.html
+   *
+   * @param request
+   * @return
+   * @throws WxPayException
+   */
+  WxPayCouponStockQueryV3Result queryCouponStockV3(WxPayCouponStockQueryV3Request request) throws WxPayException;
+
+  /**
    * <pre>
    * 查询代金券信息.
    * 接口请求链接：https://api.mch.weixin.qq.com/mmpaymkttransfers/querycouponsinfo
@@ -1405,6 +1428,17 @@ public interface WxPayService {
    * @throws WxPayException the wx pay exception
    */
   WxPayCouponInfoQueryResult queryCouponInfo(WxPayCouponInfoQueryRequest request) throws WxPayException;
+
+
+  /**
+   * 查询代金券信息V3.
+   * 接口请求:
+   * 文档地址：
+   * @param request
+   * @return
+   * @throws WxPayException
+   */
+  WxPayCouponInfoQueryV3Result queryCouponInfo(WxPayCouponInfoQueryV3Request request) throws WxPayException;
 
   /**
    * 获取微信请求数据，方便接口调用方获取处理.

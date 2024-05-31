@@ -11,6 +11,9 @@ import org.w3c.dom.NodeList;
 
 import java.io.Serializable;
 
+/**
+ * 查询代金券信息响应结果类V3
+ */
 public class WxPayCouponInfoQueryV3Result extends BaseWxPayResult implements Serializable {
   private static final long serialVersionUID = 1L;
 
