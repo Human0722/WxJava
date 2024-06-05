@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -217,7 +218,7 @@ public class WxPayUnifiedOrderV3Request implements Serializable {
      * </pre>
      */
     @SerializedName(value = "total")
-    private Integer total;
+    private BigDecimal total;
     /**
      * <pre>
      * 字段名：币类型

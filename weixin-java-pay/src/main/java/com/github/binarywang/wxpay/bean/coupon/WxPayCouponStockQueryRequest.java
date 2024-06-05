@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * <pre>
- * 查询代金券批次请求对象类
+ * 查询代金券批次详情请求对象类
  * Created by Binary Wang on 2017-7-15.
  * </pre>
  *

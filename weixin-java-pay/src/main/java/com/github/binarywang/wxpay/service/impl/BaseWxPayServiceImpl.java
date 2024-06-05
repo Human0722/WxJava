@@ -1200,21 +1200,22 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   @Override
   public WxPayCouponSendV3Result sendCouponV3(WxPayCouponSendV3Request request) throws WxPayException {
     String url = String.format("%s/v3/marketing/favor/users/%s/coupons", this.getPayBaseUrl(),request.getOpenId());
+    log.info("json:===>" + GSON.toJson(request));
     String response = this.postV3(url, GSON.toJson(request));
     return GSON.fromJson(response, WxPayCouponSendV3Result.class);
   }
 
   @Override
-  public WxPayCouponStockQueryV3Result queryCouponStockV3(WxPayCouponStockQueryV3Request request) throws WxPayException {
-    String url = String.format("%s/v3/marketing/favor/stocks/%s", this.getPayBaseUrl(), request.getStockId());
-    String response = this.postV3(url, GSON.toJson(request));
-    return GSON.fromJson(response, WxPayCouponStockQueryV3Result.class);
+  public <T> T queryCouponStockV3(WxPayCouponStockQueryV3Request request) throws WxPayException {
+    String url = String.format("%s/v3/marketing/favor/stocks/%s?stock_creator_mchid=%s", this.getPayBaseUrl(), request.getStockId(), request.getStockCreatorMchid());
+    String response = this.getV3(url);
+    return (T) GSON.fromJson(response, WxPayCouponStockQueryV3Result.class);
   }
 
   @Override
-  public WxPayCouponInfoQueryV3Result queryCouponInfo(WxPayCouponInfoQueryV3Request request) throws WxPayException {
-    String url = String.format("%s/v3/marketing/favor/users/{openid}/coupons/%s", this.getPayBaseUrl(), request.getCouponId());
-    String response = this.postV3(url, GSON.toJson(request));
+  public WxPayCouponInfoQueryV3Result queryCouponInfoV3(WxPayCouponInfoQueryV3Request request) throws WxPayException {
+    String url = String.format("%s/v3/marketing/favor/users/%s/coupons/%s?appid=%s", this.getPayBaseUrl(), request.getOpenId(), request.getCouponId(), request.getAppid());
+    String response = this.getV3(url);
     return GSON.fromJson(response, WxPayCouponInfoQueryV3Result.class);
   }
 

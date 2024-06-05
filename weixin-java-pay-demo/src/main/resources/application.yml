@@ -1,0 +1,21 @@
+logging:
+  level:
+    org.springframework.web: info
+    com.github.binarywang.demo.wx.pay: debug
+    com.github.binarywang.wxpay: debug
+
+#wx:
+#  pay:
+#    appId:  wx0f454cbf8c369d54
+#    mchId: 1651231433
+#    mchKey: alsdjfaldshjf89adsufyas9dfh2q908
+#    keyPath: classpath:cert/apiclient_cert.p12
+
+wx:
+  pay:
+    appId:
+    mchId: 1651231433
+    keyPath: classpath:cert/apiclient_cert.p12
+    apiv3Key: alsdjdfghshjfefcdsufyas9dfh2q908
+    privateKeyPath: classpath:cert/apiclient_key.pem
+    privateCertPath: classpath:cert/apiclient_cert.pem

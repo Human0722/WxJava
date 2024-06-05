@@ -2,10 +2,12 @@ package com.github.binarywang.wxpay.bean.coupon.v3;
 
 import com.github.binarywang.wxpay.bean.request.BaseWxPayRequest;
 import com.github.binarywang.wxpay.exception.WxPayException;
+import com.google.gson.annotations.SerializedName;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
 import me.chanjar.weixin.common.annotation.Required;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -15,12 +17,10 @@ import java.util.Map;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
-@XStreamAlias("xml")
-public class WxPayCouponInfoQueryV3Request extends BaseWxPayRequest {
+public class WxPayCouponInfoQueryV3Request implements Serializable {
+
+  public final static long serialVersionId = 1L;
 
 
   /**
@@ -29,7 +29,6 @@ public class WxPayCouponInfoQueryV3Request extends BaseWxPayRequest {
    * 类型：　String
    */
   @Required
-  @XStreamAlias("coupon_id")
   private String couponId;
 
 
@@ -39,16 +38,21 @@ public class WxPayCouponInfoQueryV3Request extends BaseWxPayRequest {
    * 类型： String
    */
   @Required
-  @XStreamAlias("openid")
   private String openId;
-  @Override
-  protected void checkConstraints() throws WxPayException {
-    // do nothing
-  }
 
-  @Override
-  protected void storeMap(Map<String, String> map) {
-    map.put("coupon_id",couponId);
-    map.put("openid", openId);
-  }
+  @SerializedName("stock_id")
+  private String stockId;
+
+  @SerializedName("out_request_no")
+  private String outRequestNo;
+
+  /**
+   * 字段名：公众账号ID
+   * 是否必填： 是
+   * 类型： String
+   */
+  @Required
+  @SerializedName("appid")
+  private String appid;
+
 }

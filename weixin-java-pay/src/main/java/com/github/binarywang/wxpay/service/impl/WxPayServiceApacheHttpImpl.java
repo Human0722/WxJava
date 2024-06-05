@@ -112,6 +112,7 @@ public class WxPayServiceApacheHttpImpl extends BaseWxPayServiceImpl {
         this.log.info("\n【请求地址】：{}\n【请求数据】：{}\n【响应数据】：{}", url, requestStr, responseString);
         return responseString;
       }
+      log.info("res: =======>" + response.getEntity().toString());
 
       //有错误提示信息返回
       JsonObject jsonObject = GsonParser.parse(responseString);

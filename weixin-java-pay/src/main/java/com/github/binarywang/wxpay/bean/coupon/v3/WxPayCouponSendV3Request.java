@@ -3,6 +3,7 @@ package com.github.binarywang.wxpay.bean.coupon.v3;
 import com.github.binarywang.wxpay.bean.request.BaseWxPayRequest;
 import com.github.binarywang.wxpay.bean.result.BaseWxPayResult;
 import com.github.binarywang.wxpay.exception.WxPayException;
+import com.google.gson.annotations.SerializedName;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.*;
 import me.chanjar.weixin.common.annotation.Required;
@@ -25,7 +26,7 @@ public class WxPayCouponSendV3Request extends BaseWxPayRequest {
    * 字段名：用户openid
    * 是否必填：是
    * 类型：String
-   * 说明： 
+   * 说明：
    */
   private String openId;
 
@@ -36,22 +37,29 @@ public class WxPayCouponSendV3Request extends BaseWxPayRequest {
    */
   @Required
   @XStreamAlias("stock_id")
+  @SerializedName("stock_id")
   private String stockId;
 
   /**
-   * 字段名： 公众账号ID
+   * 字段名： 【商户单据号】
+   *  商户此次发放凭据号（格式：商户id+日期+流水号），商户侧需保持唯一性
    * 是否必填： 是
    *
    */
+  @Required
   @XStreamAlias("out_request_no")
+  @SerializedName("out_request_no")
   private String outRequestNo;
+
 
   /**
    * 字段名：创建批次的商户号
    * 是否必填： 是
    * 类型：String
    */
+  @Required
   @XStreamAlias("stock_creator_mchid")
+  @SerializedName("stock_creator_mchid")
   private String stockCreatorMchid;
 
   /**

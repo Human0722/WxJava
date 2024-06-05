@@ -1414,7 +1414,7 @@ public interface WxPayService {
    * @return
    * @throws WxPayException
    */
-  WxPayCouponStockQueryV3Result queryCouponStockV3(WxPayCouponStockQueryV3Request request) throws WxPayException;
+  <T> T  queryCouponStockV3(WxPayCouponStockQueryV3Request request) throws WxPayException;
 
   /**
    * <pre>
@@ -1438,7 +1438,7 @@ public interface WxPayService {
    * @return
    * @throws WxPayException
    */
-  WxPayCouponInfoQueryV3Result queryCouponInfo(WxPayCouponInfoQueryV3Request request) throws WxPayException;
+  WxPayCouponInfoQueryV3Result queryCouponInfoV3(WxPayCouponInfoQueryV3Request request) throws WxPayException;
 
   /**
    * 获取微信请求数据，方便接口调用方获取处理.

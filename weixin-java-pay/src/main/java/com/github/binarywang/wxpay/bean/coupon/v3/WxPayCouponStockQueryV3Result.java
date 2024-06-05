@@ -1,26 +1,24 @@
 package com.github.binarywang.wxpay.bean.coupon.v3;
 
-import com.github.binarywang.wxpay.bean.result.BaseWxPayResult;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.github.binarywang.wxpay.bean.marketing.FavorStocksGetResult;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import lombok.experimental.Accessors;
+import org.checkerframework.checker.units.qual.N;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 查询代金券批次响应参数对象V3
  * https://pay.weixin.qq.com/docs/merchant/apis/cash-coupons/stock/query-stock.html
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@XStreamAlias("xml")
-public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Serializable {
+@Accessors(chain = true)
+public class WxPayCouponStockQueryV3Result implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
@@ -28,7 +26,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 是
    * 类型： String
    */
-  @XStreamAlias("stock_id")
+  @SerializedName("stock_id")
   private String stockId;
 
   /**
@@ -36,7 +34,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 是
    * 类型：String
    */
-  @XStreamAlias("stock_creator_mchid")
+  @SerializedName("stock_creator_mchid")
   private String stockCreatorMchid;
 
   /**
@@ -44,7 +42,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 是
    * 类型：String
    */
-  @XStreamAlias("stock_name")
+  @SerializedName("stock_name")
   private String stockName;
 
   /**
@@ -52,7 +50,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 是
    * 类型：String: unactivated:未激活， audit:审核中， running:运行中，stoped:已停止， paused: 暂停发放
    */
-  @XStreamAlias("status")
+  @SerializedName("status")
   private String status;
 
   /**
@@ -60,7 +58,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 是
    * 类型：String 格式为yyyy-MM-DDTHH:mm:ss.sss+TIMEZONE 。例如：2015-05-20T13:29:35.120+08:00表示，北京时间2015年5月20日 13点29分35秒。
    */
-  @XStreamAlias("create_time")
+  @SerializedName("create_time")
   private String createTime;
 
   /**
@@ -68,7 +66,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：是
    * 类型：String
    */
-  @XStreamAlias("description")
+  @SerializedName("description")
   private String description;
 
   /**
@@ -76,15 +74,15 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：否
    * 说明：层级深，暂时不写
    */
-  @XStreamAlias("stock_use_rule")
-  private String stockUseRuleXML;
+  @SerializedName("stock_use_rule")
+  private StockUseRule stockUseRule;
 
   /**
    * 字段名：可用开始时间
    * 是否必填： 是
    * 类型：String 格式为yyyy-MM-DDTHH:mm:ss.sss+TIMEZONE 。例如：2015-05-20T13:29:35.120+08:00表示，北京时间2015年5月20日 13点29分35秒。
    */
-  @XStreamAlias("available_begin_time")
+  @SerializedName("available_begin_time")
   private String availableBeginTime;
 
 
@@ -93,7 +91,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 是
    * 类型：String 格式为yyyy-MM-DDTHH:mm:ss.sss+TIMEZONE 。例如：2015-05-20T13:29:35.120+08:00表示，北京时间2015年5月20日 13点29分35秒。
    */
-  @XStreamAlias("available_end_time")
+  @SerializedName("available_end_time")
   private String availableEndTime;
 
   /**
@@ -101,7 +99,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：是
    * 类型：Integer
    */
-  @XStreamAlias("distributed_coupons")
+  @SerializedName("distributed_coupons")
   private Integer distributedCoupons;
 
   /**
@@ -109,7 +107,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：是
    * 类型：Boolean: true, false
    */
-  @XStreamAlias("no_cash")
+  @SerializedName("no_cash")
   private String noCash;
 
   /**
@@ -117,7 +115,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：否
    * 类型：String 格式为yyyy-MM-DDTHH:mm:ss.sss+TIMEZONE 。例如：2015-05-20T13:29:35.120+08:00表示，北京时间2015年5月20日 13点29分35秒。
    */
-  @XStreamAlias("start_time")
+  @SerializedName("start_time")
   private String startTime;
 
   /**
@@ -125,14 +123,14 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 否
    * 类型：String 格式为yyyy-MM-DDTHH:mm:ss.sss+TIMEZONE 。例如：2015-05-20T13:29:35.120+08:00表示，北京时间2015年5月20日 13点29分35秒。
    */
-  @XStreamAlias("stop_time")
+  @SerializedName("stop_time")
   private String stopTime;
 
   /**
    * 字段名：减至批次特定信息
    * 是否必填： 否
    */
-  @XStreamAlias("cut_to_message")
+  @SerializedName("cut_to_message")
   private CutTypeMsg cutToMessage;
 
   /**
@@ -140,7 +138,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：是
    * 类型：Boolean true,false
    */
-  @XStreamAlias("single_item")
+  @SerializedName("single_item")
   private String singleitem;
 
   /**
@@ -148,7 +146,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填：是
    * 类型：String
    */
-  @XStreamAlias("stock_type")
+  @SerializedName("stock_type")
   private String stockType;
 
   /**
@@ -156,7 +154,7 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
    * 是否必填： 否
    * 类型：String
    */
-  @XStreamAlias("card_id")
+  @SerializedName("card_id")
   private String cardId;
 
   @Data
@@ -166,55 +164,141 @@ public class WxPayCouponStockQueryV3Result extends BaseWxPayResult implements Se
     /**
      * 可用优惠的商品最高单价,单位：分
      */
-    @XStreamAlias("single_price_max")
+    @SerializedName("single_price_max")
     private Integer singlePriceMax;
 
     /**
      * 减至后的优惠单价,单位：分
      */
-    @XStreamAlias("cut_to_price")
+    @SerializedName("cut_to_price")
     private Integer cutToPrice;
   }
 
+  /**
+   * 满减券批次使用规则
+   * 普通发券批次特定信息
+   */
   @Data
   @NoArgsConstructor
   @AllArgsConstructor
   private static class StockUseRule {
-    //TODO https://pay.weixin.qq.com/docs/merchant/apis/cash-coupons/stock/query-stock.html
-    // too much
+    /**
+     * <pre>
+     *   字段名：发放总上限
+     *   是否必填： 是
+     *   类型：Integer
+     * </pre>
+     */
+    @SerializedName("max_coupons")
+    private Integer maxCoupons;
+
+
+    /**
+     * <pre>
+     *   字段名：单天发放上限
+     *   是否必填： 是
+     *   类型：Integer
+     *   描述：单天消耗金额上限，单位：分
+     *</pre>
+     */
+    @SerializedName("max_amount")
+    private Integer maxAmount;
+
+    /**
+     * <pre>
+     *   字段名：固定面额批次特定信息
+     *   是否必填： 否
+     *   类型：FixedValueStockMsg
+     *   描述：固定面额批次特定信息
+     * </pre>
+     */
+    @SerializedName("fixed_normal_coupon")
+    private FixedValueStockMsg fixedNormalCoupon;
+
+    /**
+     * <pre>
+     *   字段名：单个用户可领个数
+     *   是否必填： 是
+     *   类型：Integer
+     *   描述：单个用户可领个数
+     * </pre>
+     */
+    @SerializedName("max_coupons_per_user")
+    private Integer maxCouponsPerUser;
+
+    /**
+     * <pre>
+     *   字段名：券类型
+     *   是否必填： 否
+     *   类型：String: NORMAL, CUT_TO
+     * </pre>
+     */
+    @SerializedName("coupon_type")
+    private String couponType;
+
+    /**
+     * <pre>
+     *   字段名：订单优惠标记
+     *   是否必填： 否
+     *   类型：List<String>
+     *   描述：暂未开放
+     * </pre>
+     */
+    @SerializedName("goods_tag")
+    private List<String> goodsTag;
+
+    /**
+     * <pre>
+     *   字段名：指定支付模式
+     *   是否必填： 否
+     *   类型：List<String>
+     *   枚举值：
+     *      MICROAPP: 小程序支付
+     *      APPPAY: APP支付
+     *      PPAY: 免密支付
+     *      CARD: 付款码支付
+     *      FACE: 人脸支付
+     *      OTHER: 其他支付
+     */
+    @SerializedName("trade_type")
+    private List<String> tradeType;
+
+    /**
+     * <pre>
+     *   字段名：是否允许合并使用
+     *   是否必填： 否
+     *   类型：Boolean
+     * </pre>
+     */
+    @SerializedName("combine_use")
+    private Boolean combineUse;
   }
 
-  private CutTypeMsg readXmlCutTypeMsg(Document d, String tagName) {
-    NodeList elementsByTagName = d.getElementsByTagName(tagName);
-    if (elementsByTagName == null || elementsByTagName.getLength() == 0) {
-      return null;
-    }
-    Node item = elementsByTagName.item(0);
-    CutTypeMsg cutTypeMsg = new CutTypeMsg();
-    cutTypeMsg.setCutToPrice(readXmlInteger(item, "cut_to_price"));
-    cutTypeMsg.setSinglePriceMax(readXmlInteger(item, "single_price_max"));
-    return cutTypeMsg;
+  /**
+   * 固定面额批次特定信息
+   */
+  @Data
+  @NoArgsConstructor
+  private static class FixedValueStockMsg {
+    /**
+     * <pre>
+     *   字段名：面额
+     *   是否必填： 是
+     *   类型：Integer
+     * </pre>
+     */
+    @SerializedName("coupon_amount")
+    private Integer couponAmount;
+
+    /**
+     * <pre>
+     *   字段名：使用门槛
+     *   是否必填： 是
+     *   类型：Integer
+     * </pre>
+     */
+    @SerializedName("transaction_minimum")
+    private Integer transactionMinimum;
   }
 
-  @Override
-  protected void loadXml(Document d) {
-    stockId = readXmlString(d, "stock_id");
-    stockCreatorMchid = readXmlString(d, "stock_creator_mchid");
-    stockName = readXmlString(d, "stock_name");
-    status = readXmlString(d, "status");
-    createTime = readXmlString(d, "create_time");
-    description = readXmlString(d, "description");
-    stockUseRuleXML = readXmlString(d, "stock_use_rule");
-    availableBeginTime = readXmlString(d, "available_begin_time");
-    availableEndTime = readXmlString(d, "available_end_time");
-    distributedCoupons = readXmlInteger(d, "distributed_coupons");
-    noCash = readXmlString(d, "no_cash");
-    startTime = readXmlString(d, "start_time");
-    stopTime = readXmlString(d, "stop_time");
-    cutToMessage = readXmlCutTypeMsg(d, "cut_to_message");
-    singleitem = readXmlString(d, "singleitem");
-    stockType = readXmlString(d, "stock_type");
-    cardId = readXmlString(d, "card_id");
-
-  }
 }

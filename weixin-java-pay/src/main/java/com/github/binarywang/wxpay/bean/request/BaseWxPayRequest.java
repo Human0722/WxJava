@@ -4,6 +4,7 @@ import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.util.SignUtils;
 import com.github.binarywang.wxpay.util.XmlConfig;
+import com.google.gson.annotations.SerializedName;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
@@ -50,6 +51,7 @@ public abstract class BaseWxPayRequest implements Serializable {
    * </pre>
    */
   @XStreamAlias("appid")
+  @SerializedName("appid")
   protected String appid;
   /**
    * <pre>
